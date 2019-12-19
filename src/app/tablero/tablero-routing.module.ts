@@ -10,9 +10,9 @@ const routes: Routes = [
   {
     path: '', component: TableroComponent,
     children: [
-      { path: '', component: IngresoEgresoComponent },
-      { path: 'detalle', component: DetalleComponent },
-      { path: 'estadistica', component: EstadisticaComponent },
+      { path: '', component: EstadisticaComponent},
+      { path: 'ingreso-egreso', component: IngresoEgresoComponent },
+      { path: 'detalles', component: DetalleComponent },
     ]
   }
 ];

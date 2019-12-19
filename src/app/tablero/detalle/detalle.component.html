@@ -1,29 +1,58 @@
 <div class="row">
-    <div class="col-12">
-        <div class="container-fluid">
-            <h4>Detalle de ingreso egreso</h4>
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-body">
+              <div class="d-flex no-block">
+                  <div>
+                      <h4 class="card-title"><span class="lstick"></span>Detalle Ingreso y Egreso</h4></div>
+                  <div class="ml-auto">
+                      <select class="custom-select b-0">
+                          <option selected="">Enero</option>
+                          <option value="1">Febrero</option>
+                          <option value="2">Marzo</option>
+                          <option value="3">Abril</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="table-responsive m-t-20 no-wrap">
+                  <table class="table vm no-th-brd pro-of-month">
+                      <thead>
+                          <tr>
+                              <th colspan="2">Descripcion</th>
+                              <th>Monto</th>
+                              <th>Tipo</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                             
+                              <td colspan="2">
+                                  descripcion 
+                              </td>
+                               <td>$103.9K</td>
+                               <td><span class="label label-success">Ingreso</span></td>
+                               <td>Elite Admin</td>
+                              
+                             
+                          </tr>
 
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Descripción</th>
-                  <th>Monto</th>
-                  <th>Tipo</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
-                </tr>
-              </tbody>
-
-            </table>
-        </div>
-    </div>
+                          <tr>
+                             
+                            <td colspan="2">
+                                descripcion 
+                            </td>
+                             <td>$3.9K</td>
+                             <td><span class="label label-danger">Egreso</span></td>
+                             <td>Elite Admin</td>
+                                         
+                        </tr>
+                        
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-  
+

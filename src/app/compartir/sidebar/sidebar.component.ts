@@ -11,14 +11,14 @@ export class SidebarComponent implements OnInit {
         icono: 'fa fa-dashboard',
         submenu: [{
             titulo: 'Ingresos/Egresos',
-            url: '/'
+            url: '/ingreso-egreso'
         },
         {
             titulo: 'Estadistica',
-            url: '/estadistica'
+            url: '/'
         }, {
             titulo: 'Detalle',
-            url: '/detalle'
+            url: '/detalles'
         },
         ]
     }];
