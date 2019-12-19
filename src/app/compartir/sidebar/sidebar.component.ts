@@ -1,55 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styles: []
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styles: []
 })
 export class SidebarComponent implements OnInit {
- menus = [{
-    titulo: 'Principal',
-    icono: 'fa fa-dashboard',
-    submenu: [{
-            titulo: 'Grafico',
+    menus = [{
+        titulo: 'Principal',
+        icono: 'fa fa-dashboard',
+        submenu: [{
+            titulo: 'Ingresos/Egresos',
             url: '/'
         },
         {
-            titulo: 'Ajustes de Cuenta',
-            url: '/'
-        },
-    ]
-}, {
-    titulo: 'Mantenimiento',
-    icono: 'fa fa-folder-open',
-    submenu: [
-        //    { titulo: 'usuarios', url: '/' },
-        {
-            titulo: 'Usuarios',
-            url: '/'
-        },
-    ]
-}, {
-    titulo: 'Material',
-    icono: 'fa fa-folder-open',
-    submenu: [
-        //    { titulo: 'usuarios', url: '/' },
-        {
-            titulo: 'Usuarios',
-            url: '/tablero'
+            titulo: 'Estadistica',
+            url: '/estadistica'
         }, {
-            titulo: 'Clientes',
-            url: '/'
-        }, {
-            titulo: 'Productos',
-            url: '/'
+            titulo: 'Detalle',
+            url: '/detalle'
         },
+        ]
+    }];
 
-    ]
-}, ];
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }
