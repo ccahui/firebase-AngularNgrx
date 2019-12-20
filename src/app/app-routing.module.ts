@@ -6,7 +6,7 @@ import { Error404Component } from './compartir/error404/error404.component';
 
 
 const routes: Routes = [
-  { path: '**', component: Error404Component},
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({

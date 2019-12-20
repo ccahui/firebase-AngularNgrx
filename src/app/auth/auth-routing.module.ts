@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
+import { PerfilComponent } from '../tablero/perfil/perfil.component';
 
 
 const routes: Routes = [

@@ -4,6 +4,7 @@ import { TableroComponent } from './tablero.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: '', component: EstadisticaComponent},
       { path: 'ingreso-egreso', component: IngresoEgresoComponent },
       { path: 'detalles', component: DetalleComponent },
+      { path: 'perfil', component: PerfilComponent },
     ]
   }
 ];
