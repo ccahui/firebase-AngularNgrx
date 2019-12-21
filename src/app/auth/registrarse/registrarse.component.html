@@ -1,32 +1,32 @@
 <div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">
     <div class="login-box card">
         <div class="card-body">
-            <form class="form-horizontal form-material" >
+            <form [formGroup]="registrarseForm" (ngSubmit)="registrarse()" class="form-horizontal form-material" >
                 <h3 class="box-title m-b-20">Crear una cuenta</h3>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <input class="form-control" placeholder="Nombres Completos">
+                        <input formControlName="nombres" class="form-control" placeholder="Nombres Completos">
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control" type="text" placeholder="Email">
+                        <input  formControlName="email" class="form-control" type="text" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control" type="password"  placeholder="Contraseña">
+                        <input formControlName="password" class="form-control" type="password"  placeholder="Contraseña">
                     </div>
                 </div>
-                <div class="form-group">
+               <div class="form-group">
                     <div class="col-xs-12">
-                        <input class="form-control" type="password" placeholder="Confirmar Contraseña">
+                        <input formControlName="confirmarPassword" class="form-control" type="password" placeholder="Confirmar Contraseña">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="checkbox checkbox-success">
-                            <input id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
+                            <input formControlName="terminos" id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
                             <label for="checkbox-signup"> Acepto los <a href="javascript:void(0)">Terminos y condiciones</a></label>
                         </div>
                     </div>
