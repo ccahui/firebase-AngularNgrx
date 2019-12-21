@@ -15,7 +15,7 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a class="pointer-sidebar" routerLink="/perfil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Perfil </a></li>
                       
-                        <li><a class="pointer-sidebar">Logout</a></li>
+                        <li><a class="pointer-sidebar" (click)="cerrarSesion()" >Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-devider"></li>
