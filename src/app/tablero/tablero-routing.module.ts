@@ -5,13 +5,14 @@ import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.componen
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: TableroComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: '', component: EstadisticaComponent},
+      { path: '', component: EstadisticaComponent },
       { path: 'ingreso-egreso', component: IngresoEgresoComponent },
       { path: 'detalles', component: DetalleComponent },
       { path: 'perfil', component: PerfilComponent },

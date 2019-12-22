@@ -2,7 +2,7 @@
     <div class="login-box card">
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" class="form-horizontal form-material" action="/">
-                <h3 class="box-title m-b-20">Iniciar Sesión</h3>
+                <h3 class="box-title m-b-20">Iniciar Sesión: {{ auth.currentUser$ | async }}</h3>
                 <div class="form-group ">
                     <div class="col-xs-12">
                         <input formControlName="email" class="form-control" type="email" placeholder="Email"> </div>

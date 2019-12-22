@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   loginForm;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
     init_plugins();
