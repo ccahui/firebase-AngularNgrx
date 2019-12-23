@@ -11,8 +11,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { StoreModule } from '@ngrx/store';
 
+import { IUReduxModule} from './store/iu/iu.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,18 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    StoreModule.forRoot({}, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+       // strictActionSerializability: true,
+      },
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    IUReduxModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { selectFromIULoading } from 'src/app/store/iu/iu.reducer';
 /*Funcionalidades y eventos internos */
 
 
@@ -17,13 +21,14 @@ export class LoginComponent implements OnInit {
   static lenghtMinPassword = 6  ;
 
   loginForm;
-
-  constructor(private fb: FormBuilder, public auth: AuthService) { }
+  loading$: Observable<boolean>;
+  constructor(private fb: FormBuilder, public auth: AuthService, private store: Store<AppState>) { }
 
   ngOnInit() {
     init_plugins();
     this.crearFormulario();
     this.inicializarConDatosFormulario();
+    this.loading$  = this.store.pipe(select(selectFromIULoading));
   }
   crearFormulario() {
     this.loginForm = this.fb.group({

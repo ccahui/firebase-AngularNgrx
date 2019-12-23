@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-sidebar',
@@ -24,9 +25,12 @@ export class SidebarComponent implements OnInit {
         ]
     }];
 
-    constructor(private auth: AuthService) { }
+    userInfo$: Observable<any>;
+    constructor(private auth: AuthService) {
+    }
 
     ngOnInit() {
+        this.userInfo$ = this.auth.currentUser$;
     }
     cerrarSesion() {
         this.auth.cerrarSesion();

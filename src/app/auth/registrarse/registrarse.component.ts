@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { selectFromIULoading } from 'src/app/store/iu/iu.reducer';
 declare function init_plugins();
 
 @Component({
@@ -13,13 +17,15 @@ export class RegistrarseComponent implements OnInit {
   static lenghtMinPassword = 6;
 
   registrarseForm;
+  loading$: Observable<boolean>;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private store: Store<AppState>) { }
 
   ngOnInit() {
     init_plugins();
     this.crearFormulario();
     this.inicializarConDatosFormulario();
+    this.loading$ = this.store.pipe(select(selectFromIULoading));
   }
   crearFormulario() {
     this.registrarseForm = this.fb.group({

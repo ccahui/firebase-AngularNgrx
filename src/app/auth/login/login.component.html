@@ -1,43 +1,59 @@
 <div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">
-    <div class="login-box card">
-        <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" class="form-horizontal form-material" action="/">
-                <h3 class="box-title m-b-20">Iniciar Sesión: {{ auth.currentUser$ | async }}</h3>
-                <div class="form-group ">
-                    <div class="col-xs-12">
-                        <input formControlName="email" class="form-control" type="email" placeholder="Email"> </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <input formControlName="password" class="form-control" type="password"  placeholder="Contraseña"> </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <div class="checkbox checkbox-info float-left p-t-0">
-                            <input formControlName="recordarme" id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
-                            <label for="checkbox-signup"> Recordarme</label>
-                        </div> <a href="javascript:void(0)" id="to-recover" class="text-muted float-right"><i class="fa fa-lock m-r-5"></i>¿Olvido su contraseña?</a> </div>
-                </div>
-                <div class="form-group text-center">
-                    <div class="col-xs-12 p-b-20">
-                        <button [disabled]="loginForm.invalid" class="btn btn-block btn-lg btn-info btn-rounded" >Iniciar Sesión</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                        <div class="social">
-                            <a href="javascript:void(0)" class="btn  btn-facebook mr-2" data-toggle="tooltip" title="Login con Facebook"> <i aria-hidden="true" class="fa fa-facebook-f"></i> </a>
-                            <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login con Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group m-b-0">
-                    <div class="col-sm-12 text-center">
-                       ¿No tienes cuenta? <a routerLink="/registrarse" class="text-info m-l-5"><b>Crear una cuenta</b></a>
-                    </div>
-                </div>
-            </form>
-
+  <div class="login-box card">
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" class="form-horizontal form-material" action="/">
+        <h3 class="box-title m-b-20">Iniciar Sesión: {{ auth.currentUser$ | async }}</h3>
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input formControlName="email" class="form-control" type="email" placeholder="Email"> </div>
         </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <input formControlName="password" class="form-control" type="password" placeholder="Contraseña"> </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <div class="checkbox checkbox-info float-left p-t-0">
+              <input formControlName="recordarme" id="checkbox-signup" type="checkbox"
+                class="filled-in chk-col-light-blue">
+              <label for="checkbox-signup"> Recordarme</label>
+            </div> <a href="javascript:void(0)" id="to-recover" class="text-muted float-right"><i
+                class="fa fa-lock m-r-5"></i>¿Olvido su contraseña?</a>
+          </div>
+        </div>
+        <div *ngIf="(loading$ | async) == false " class="form-group text-center">
+          <div class="col-xs-12 p-b-20">
+            <button [disabled]="loginForm.invalid" class="btn btn-block btn-lg btn-info btn-rounded">Iniciar
+              Sesión</button>
+          </div>
+        </div>
+
+        <div *ngIf="(loading$ | async) == true " class="form-group text-center">
+          <div class="col-xs-12 p-b-20">
+            <button [disabled]="loginForm.invalid" class="btn btn-block btn-lg btn-info btn-rounded">
+            <i class="fa fa-spinner fa-pulse fa-spin"></i>
+            Iniciar Sesión ...
+        </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+            <div class="social">
+              <a href="javascript:void(0)" class="btn  btn-facebook mr-2" data-toggle="tooltip"
+                title="Login con Facebook"> <i aria-hidden="true" class="fa fa-facebook-f"></i> </a>
+              <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login con Google"> <i
+                  aria-hidden="true" class="fa fa-google-plus"></i> </a>
+            </div>
+          </div>
+        </div>
+        <div class="form-group m-b-0">
+          <div class="col-sm-12 text-center">
+            ¿No tienes cuenta? <a routerLink="/registrarse" class="text-info m-l-5"><b>Crear una cuenta</b></a>
+          </div>
+        </div>
+      </form>
+
     </div>
+  </div>
 </div>
