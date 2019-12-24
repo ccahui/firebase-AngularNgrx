@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   inicializarConDatosFormulario() {
     const data = {
-      email: 'kccahui@unsa.edu.pe',
+      email: 'hannagover@unsa.edu.pe',
       password: '123456',
       recordarme: true
     };

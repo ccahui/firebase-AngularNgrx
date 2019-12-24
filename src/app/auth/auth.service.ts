@@ -31,9 +31,8 @@ export class AuthService {
     this.currentUser$.subscribe(user => {
       if (user) {
         this.subscription = this.angularFirestore.collection('usuarios').doc(user.uid).valueChanges().subscribe((userDoc: any) => {
-          const usuario = new Usuario(userDoc.email, userDoc.email, user.uid);
+          const usuario = new Usuario(userDoc.nombres, userDoc.email, user.uid);
           this.store.dispatch(loginSuccess({ usuario }));
-          console.log(userDoc);
         });
       } else {
         if (this.subscription) {
@@ -67,7 +66,6 @@ export class AuthService {
     this.usuarioCollection.doc(id).set(data)
       .then(() => {
         this.store.dispatch(desactivarLoading());
-        console.log('Document successfully written!');
       })
       .catch((error) => {
         Swal.fire('Error writing document: ', error);
@@ -93,7 +91,6 @@ export class AuthService {
   }
 
   cerrarSesion() {
-    console.log('cerrando sesion ...');
     this.authFire.auth.signOut().
       then(() => {
         this.store.dispatch(cerrarSesion());

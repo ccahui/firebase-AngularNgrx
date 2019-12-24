@@ -60,11 +60,7 @@ export class RegistrarseComponent implements OnInit {
   }
 
   registrarse() {
-    console.log(this.registrarseForm.status);
-    console.log(this.registrarseForm.valid);
-
     this.auth.registrarUsuario(this.registrarseForm.value);
-
   }
 
 }
