@@ -5,4 +5,4 @@ export const activarLoading = createAction(
 );
 
 export const desactivarLoading = createAction(
-    '[IU] Cambiar el estado de una tarea');
+    '[IU] Desactivar Loading');

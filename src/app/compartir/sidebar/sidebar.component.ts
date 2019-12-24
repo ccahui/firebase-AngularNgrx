@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../store/app.reducers';
+import { selectFromAuthUsuario } from 'src/app/store/auth/auth.reducer';
+import { cerrarSesion } from 'src/app/store/auth/auth.actions';
 
 @Component({
     selector: 'app-sidebar',
@@ -25,15 +29,17 @@ export class SidebarComponent implements OnInit {
         ]
     }];
 
+
     userInfo$: Observable<any>;
-    constructor(private auth: AuthService) {
-    }
+    constructor(private store: Store<AppState>, private auth: AuthService) { }
 
     ngOnInit() {
-        this.userInfo$ = this.auth.currentUser$;
+        this.userInfo$ = this.store.pipe(select(selectFromAuthUsuario));
     }
+
     cerrarSesion() {
         this.auth.cerrarSesion();
     }
+
 
 }

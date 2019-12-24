@@ -15,7 +15,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { StoreModule } from '@ngrx/store';
 
-import { IUReduxModule} from './store/iu/iu.module'
+import { IUReduxModule} from './store/iu/iu.module';
+import { AuthReduxModule} from './store/auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +34,13 @@ import { IUReduxModule} from './store/iu/iu.module'
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
-        strictStateSerializability: true,
+       strictStateSerializability: true,
        // strictActionSerializability: true,
       },
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     IUReduxModule,
+    AuthReduxModule,
   ],
 
   providers: [],

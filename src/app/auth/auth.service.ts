@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
 import { activarLoading, desactivarLoading } from '../store/iu/iu.actions';
+import { loginSuccess, cerrarSesion } from '../store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -58,16 +59,17 @@ export class AuthService {
         this.store.dispatch(desactivarLoading());
       });
   }
+
   iniciarSesion(data: { email: string, password: string }) {
-    
+
     this.store.dispatch(activarLoading());
     this.authFire.auth.signInWithEmailAndPassword(data.email, data.password).
       then(resp => {
-        return new Promise(() => setTimeout(() => {
-          this.router.navigate(['']);
-          this.store.dispatch(desactivarLoading());
-        }, 3000));
-
+        const user = resp.user;
+        const usuario = new Usuario(user.email, user.email, user.uid);
+        this.store.dispatch(desactivarLoading());
+        this.store.dispatch(loginSuccess({usuario}));
+        this.router.navigate(['']);
       }).catch(error => {
         Swal.fire('Iniciar Sesion', error.message, 'error');
         this.store.dispatch(desactivarLoading());
@@ -79,6 +81,7 @@ export class AuthService {
     console.log('cerrando sesion ...');
     this.authFire.auth.signOut().
       then(() => {
+        this.store.dispatch(cerrarSesion());
         this.router.navigate(['/login']);
       })
       .catch(error => {
