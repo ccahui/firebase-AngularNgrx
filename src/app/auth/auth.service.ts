@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import Swal from 'sweetalert2';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Usuario } from './user.modelo';
@@ -20,6 +20,7 @@ import { loginSuccess, cerrarSesion } from '../store/auth/auth.actions';
 export class AuthService {
 
   currentUser$: Observable<firebase.User>;
+  subscription: Subscription;
   private usuarioCollection: AngularFirestoreCollection<any>;
   constructor(
     private authFire: AngularFireAuth,
@@ -27,6 +28,20 @@ export class AuthService {
     private router: Router, private store: Store<AppState>) {
 
     this.currentUser$ = this.authFire.authState;
+    this.currentUser$.subscribe(user => {
+      if (user) {
+        this.subscription = this.angularFirestore.collection('usuarios').doc(user.uid).valueChanges().subscribe((userDoc: any) => {
+          const usuario = new Usuario(userDoc.email, userDoc.email, user.uid);
+          this.store.dispatch(loginSuccess({ usuario }));
+          console.log(userDoc);
+        });
+      } else {
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
+      }
+    });
+
     this.usuarioCollection = angularFirestore.collection<any>('usuarios');
   }
 
@@ -68,7 +83,7 @@ export class AuthService {
         const user = resp.user;
         const usuario = new Usuario(user.email, user.email, user.uid);
         this.store.dispatch(desactivarLoading());
-        this.store.dispatch(loginSuccess({usuario}));
+        this.store.dispatch(loginSuccess({ usuario }));
         this.router.navigate(['']);
       }).catch(error => {
         Swal.fire('Iniciar Sesion', error.message, 'error');
