@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-6">
+  <div class="col-md-6">
       <div class="card">
         <div class="card-header bg-info">
           <h4 class="m-b-0 text-white">Agregar Ingreso / Egreso</h4>
@@ -10,14 +10,14 @@
           </p>
 
           <hr>
-          <form>
+          <form [formGroup]="transaccionForm" (ngSubmit)="transaccion()">
             
             <div class="form-group">
               <label>Descripción</label>
               <input type="text" 
                      class="form-control" 
                      placeholder="Descripción"
-                     name="descripcion">
+                     formControlName="descripcion">
             </div>
 
             <div class="form-group">
@@ -25,7 +25,7 @@
                 <input type="number" 
                        class="form-control" 
                        placeholder="Monto"
-                       name="monto">
+                       formControlName="monto">
                   <p>
                     Debe de ser un monto positivo
                   </p>
@@ -34,23 +34,23 @@
             <div class="form-group">
                 <label>Tipo</label>
              
-                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                  <option value="Category 1">Ingreso</option>
-                  <option value="Category 2">Egreso</option>
+                <select formControlName="tipo" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                  
+                  <option *ngFor="let item of tiposTransaccion" [value]="item">{{item}}</option>
             
               </select>
             </div>
 
             <hr>
             
-            <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> Guardar</button>
+            <button *ngIf="(loading$ | async) == false" [disabled]="transaccionForm.invalid" type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> Guardar</button>
 
-            <!-- 
-              <button disabled class="btn btn-success mr-2">
-                <i class="fa fa-spin fa-sync"></i>
-                Espere por favor...
+            
+              <button *ngIf="(loading$ | async) == true" disabled class="btn btn-success mr-2">
+                <i class="fa fa-spinner fa-pulse fa-spin"></i>
+                Guardando...
               </button> 
-            -->
+            
             
             <button type="reset" class="btn btn-light">Cancelar</button>
 

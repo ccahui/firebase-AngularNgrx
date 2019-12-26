@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { IUReduxModule} from './store/iu/iu.module';
 import { AuthReduxModule} from './store/auth/auth.module';
+import { TransaccionReduxModule} from './store/transaccion/transaccion.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { AuthReduxModule} from './store/auth/auth.module';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     IUReduxModule,
     AuthReduxModule,
+    TransaccionReduxModule
   ],
 
   providers: [],

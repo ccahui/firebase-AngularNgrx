@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IngresoEgresoService } from './ingreso-egreso.service';
 
 export declare function init_plugins();
 
@@ -8,12 +9,16 @@ export declare function init_plugins();
   styles: []
 })
 
-export class TableroComponent implements OnInit {
+export class TableroComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private serviceTransaccion: IngresoEgresoService) { }
 
   ngOnInit() {
     init_plugins();
+    this.serviceTransaccion.getTransacciones();
+  }
+  ngOnDestroy(){
+    this.serviceTransaccion.cancelarSubscriptionTransacciones();
   }
 
 }

@@ -8,6 +8,7 @@ import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.componen
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [TableroComponent, IngresoEgresoComponent, EstadisticaComponent, DetalleComponent, PerfilComponent],
@@ -15,6 +16,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CommonModule,
     TableroRoutingModule,
     CompartirModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class TableroModule { }

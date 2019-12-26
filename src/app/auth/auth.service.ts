@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
 import { activarLoading, desactivarLoading } from '../store/iu/iu.actions';
 import { loginSuccess, cerrarSesion } from '../store/auth/auth.actions';
+import { unsetTransacciones } from '../store/transaccion/transaccion.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,7 @@ export class AuthService {
     this.authFire.auth.signOut().
       then(() => {
         this.store.dispatch(cerrarSesion());
+        this.store.dispatch(unsetTransacciones());
         this.router.navigate(['/login']);
       })
       .catch(error => {
@@ -105,5 +107,9 @@ export class AuthService {
     return this.currentUser$.pipe(
       map(user => user !== null));
   }
+  getUser() {
+    return this.authFire.auth.currentUser;
+  }
+
 
 }
