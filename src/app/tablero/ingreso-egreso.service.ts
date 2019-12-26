@@ -25,7 +25,6 @@ export class IngresoEgresoService {
   transaccion(data: Transaccion) {
 
     const user = this.auth.getUser();
-    console.log(data);
     this.store.dispatch(activarLoading());
     return this.angularFirestore.collection('usuarios').doc(user.uid).collection('transacciones').add({ data });
 
@@ -42,14 +41,18 @@ export class IngresoEgresoService {
         });
       })
     ).subscribe(data => {
-        console.log(data);
-        this.store.dispatch(setTransacciones({ transacciones: data}));
-      });
+      console.log(data);
+      this.store.dispatch(setTransacciones({ transacciones: data }));
+    });
 
   }
 
   cancelarSubscriptionTransacciones() {
     console.log('UNSUBCRIBE ');
     this.subscription.unsubscribe();
+  }
+  eliminar(idTransaccion: string) {
+    const user = this.auth.getUser();
+    return this.angularFirestore.collection('usuarios').doc(user.uid).collection('transacciones').doc(idTransaccion).delete();
   }
 }

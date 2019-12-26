@@ -5,6 +5,7 @@ import { IngresoEgresoService } from '../ingreso-egreso.service';
 import { Observable } from 'rxjs';
 import { Transaccion, TipoTransaccion } from '../transaccion.modelo';
 import { selectFromTransacciones } from 'src/app/store/transaccion/transaccion.reducer';
+import { selectIngresosyEgresosObtenidos } from '../../store/transaccion/transaccion.reducer';
 
 @Component({
   selector: 'app-detalle',
@@ -15,13 +16,19 @@ export class DetalleComponent implements OnInit {
 
   transacciones$: Observable<Transaccion[]>;
   tipoTransaccion = TipoTransaccion;
+
   constructor(private store: Store<AppState>, private transaccionService: IngresoEgresoService) {
 
   }
 
   ngOnInit() {
-    this.transaccionService.getTransacciones();
     this.transacciones$ = this.store.pipe(select(selectFromTransacciones));
+
+  }
+  eliminar(idTransaccion: string) {
+    this.transaccionService.eliminar(idTransaccion).catch(err => {
+      console.log(err);
+    });
   }
 
 }

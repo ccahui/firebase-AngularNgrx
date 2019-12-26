@@ -7,7 +7,7 @@
 
           <div class="align-self-center text-white">
             <h6 class="text-white m-t-10 m-b-0">Ingresos Totales</h6>
-            <h2 class="m-t-0 text-white">+ $236,000</h2>
+            <h2 class="m-t-0 text-white">{{(ingresosEgresos$ | async).ingresos | currency }} </h2>
             <button class="btn btn-rounded btn-outline btn-light m-t-10 font-14">Ver detalles</button>
           </div>
 
@@ -23,7 +23,7 @@
 
           <div class="align-self-center text-white">
             <h6 class="text-white m-t-10 m-b-0">Egresos Totales</h6>
-            <h2 class="m-t-0 text-white">- $236,000</h2>
+            <h2 class="m-t-0 text-white">{{(ingresosEgresos$ | async).egresos | currency }} </h2>
             <button class="btn btn-rounded btn-outline btn-light m-t-10 font-14">Ver detalles</button>
           </div>
 
