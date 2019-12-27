@@ -52,7 +52,6 @@ export class AuthService {
     this.authFire.auth.createUserWithEmailAndPassword(data.email, data.password)
       .then(resp => {
         const userAuth = resp.user;
-        const usuario = new Usuario(data.nombres, userAuth.email, userAuth.uid);
         /*TODO REGISTRAR NOMBRE DE USUARIO,  */
         this.addUsuario(userAuth.uid, { nombres: data.nombres, email: userAuth.email });
 
@@ -72,6 +71,34 @@ export class AuthService {
         Swal.fire('Error writing document: ', error);
         this.store.dispatch(desactivarLoading());
       });
+  }
+  actualizarPerfil(usuario: Usuario) {
+
+    const id = usuario.uid;
+    const data = {
+      nombres: usuario.nombres,
+      email: usuario.email,
+    };
+
+    this.store.dispatch(activarLoading());
+
+    this.authFire.auth.currentUser.updateEmail(data.email).then(() => {
+      this.usuarioCollection.doc(id).update(data)
+        .then(() => {
+          this.store.dispatch(desactivarLoading());
+        })
+        .catch((error) => {
+          Swal.fire('Error writing doc  ', error);
+          this.store.dispatch(desactivarLoading());
+        });
+    }).catch((error) => {
+      console.log(error);
+      this.store.dispatch(desactivarLoading());
+      Swal.fire('Error Login ');
+      /*TODO Tiempo de sesion largo, necesito autenticarse nuevamente  */
+      this.cerrarSesion();
+    });
+
   }
 
   iniciarSesion(data: { email: string, password: string }) {

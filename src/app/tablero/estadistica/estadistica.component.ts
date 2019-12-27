@@ -18,54 +18,14 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
 
   ingresosEgresos$: Observable<{ ingresos: number, egresos: number }>;
   subscripcion: Subscription;
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: {
-      xAxes: [{}], yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
-  };
-  public barChartLabels: Label[] = ['2019'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [pluginDataLabels];
+  ingresosEgresos: {ingresos: number, egresos: number};
 
-  public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Ingresos' },
-    { data: [], label: 'Egresos' }
-  ];
-
-  public randomize(): void {
-    // Only Change 3 values
-    const data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    this.barChartData[0].data = data;
-  }
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.ingresosEgresos$ = this.store.pipe(select(selectIngresosyEgresosObtenidos));
     this.subscripcion = this.ingresosEgresos$.subscribe((ingresosEgresos) => {
-      this.barChartData = [
-        { data: [ingresosEgresos.ingresos], label: 'Ingresos' },
-        { data: [ingresosEgresos.egresos], label: 'Egresos' }
-      ];
+      this.ingresosEgresos = ingresosEgresos;
     });
   }
   ngOnDestroy() {
